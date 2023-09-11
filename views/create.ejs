@@ -1,0 +1,36 @@
+<%- include('partials/header'); -%>
+
+<form action="/signup">
+  <h2 class="tiko">Add New Recipe</h2>
+  <label for="title">Recipe Title</label>
+  <input type="text" name="title" required />
+  <label for="description">Description</label>
+  <input type="text" name="description" required />
+
+  <button type="submit" class="signup">Add</button>
+</form>
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form = document.querySelector("form");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const title = form.title.value;
+    const description = form.description.value;
+    try {
+      const res = await fetch("/create", {
+        method: "POST",
+        body: JSON.stringify({ title, description }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      if(data){
+      console.log(data);
+      location.assign('/smoothies');
+      }
+    } catch (error) {
+    }
+  });
+</script>

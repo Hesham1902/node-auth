@@ -1,0 +1,48 @@
+<%- include('partials/header'); -%>
+<ul class="recipes">
+  <% if (user.recipes.length > 0) { %> 
+    <% user.recipes.forEach(recipe => { %>
+    <li class="recipe">
+      <a class="delete" data-user="<%= user._id %>" data-recipe="<%= recipe._id %>">
+        <img src="/delete-button.svg" alt="delete icon"></img>
+      </a>
+      <img src="/smoothie.png" alt="smoothie recipe icon">
+      <h4><%= recipe.title %></h4>
+      <p><%= recipe.description %></p>
+    </li>
+      <% }) %> 
+      <% }else { %>
+        <p>There are no recipes to display...</p>
+        <% } %>
+
+</ul>
+<script>
+  const deleteIcons = document.querySelectorAll('.delete');
+  deleteIcons.forEach((deleteIcon) => {
+    deleteIcon.addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      // Extract the user ID and recipe ID
+      const userId = deleteIcon.dataset.user;
+      const recipeId = deleteIcon.dataset.recipe;
+      console.log(`userId: ${userId}, recipeId: ${recipeId}`);
+
+      // Send an HTTP DELETE request to your server
+      fetch(`/smoothies/${userId}/${recipeId}`, {
+        method: 'DELETE',
+      })
+        .then(response => {response.json()
+        location.assign('/smoothies')
+      })
+        .catch(err => console.log(err));
+    });
+  });
+</script>
+
+
+
+<%- include('partials/footer'); -%>
+
+
+
+

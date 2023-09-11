@@ -1,0 +1,15 @@
+THOUGH I WOULD ALSO LOVE TO SEE THIS, i can suggest a method - 
+
+1. you make a route get '/forgot' which renders a username filed, accepts the username and uses method 'post' to send the username data.
+
+2. in your user schema you add a field - time when the request for for reset password was generated.
+
+3. in your post route for '/forgot' you send an email (nodemailer / sendgrid) with a url to change password - now this url has to be unique, non reproducable etc - so in the url you can embed a token as a query parameter?
+
+4. now when the user clicks on the link from his email account he is redirected to an endpoint '/reset' - which accepts the new password - but before you actually redirect the user to this link i.e. in your route handler for get '/reset' you have to
+   a. check if the query parameter is a valid token i.e. check the authenticity of the token.
+   b. check for the 'time' field in the document i.e. the time set in the user document was just 1/2 hours ago?
+
+5. now you can accept the new password, make a post '/reset' route, where you change the password etc!
+
+i am really new to webdev and do suggest mistakes if you find any..also i too had commented on two of shaun's other videos to do this if possible as its will take max 2 videos.
