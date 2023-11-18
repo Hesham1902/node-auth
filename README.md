@@ -7,31 +7,6 @@ A web application for managing recipes. Users can create, edit, and delete their
 - [Getting Started](#getting-started)
 - [Features](#features)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Getting Started
-
-To get started with this project, follow these steps:
-
-1. Clone this repository:
-
-   ```bash
-   git clone https://github.com/yourusername/recipe-app.git
-
-Certainly, here's a simpler README template for your GitHub repository:
-
-plaintext
-Copy code
-# Recipe Management Web App
-
-A web application for managing recipes. Users can create, edit, and delete their recipes after registering and logging in.
-
-## Table of Contents
-
-- [Getting Started](#getting-started)
-- [Features](#features)
-- [Usage](#usage)
 
 
 ## Getting Started
@@ -58,7 +33,6 @@ Replace the database URI and secret key with your own values.
 4. Start the server:
 
 npm start
-
 
 # Features
 User registration and login
